@@ -1,21 +1,16 @@
 package com.hb.engine;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.DefaultEditorKit.InsertContentAction;
 
 import com.hb.controller.AddController;
 import com.hb.controller.DetailController;
 import com.hb.controller.InsertController;
 import com.hb.controller.ListController;
-import com.hb.model.SampleDAO;
 
 public class FrontController extends HttpServlet {
 
@@ -24,28 +19,15 @@ public class FrontController extends HttpServlet {
 		
 		String url = "/";
 		String path = req.getRequestURI();
-		SampleDAO dao;
-		try {
-			dao = new SampleDAO();
-			if(path.equals("/day01/list.do")) {
-				ListController conn = new ListController();
-				url = conn.execute(req);
-			} else if(path.equals("/day01/detail.do")) {
-				DetailController conn = new DetailController();
-				url = conn.execute(req);
-			} else if(path.equals("/day01/add.do")) {
-				AddController conn = new AddController();
-				url = conn.execute(req);
-			} else if(path.equals("/day01/insert.do")) {
-				InsertController conn = new InsertController();
-				url = conn.execute(req);
-		 	} else {
-				url += "index.jsp";
-			}
-			dao.closeAll();
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		
+		FrontInter conn = null;
+		if(path.equals("/day01/list.do")) conn = new ListController();
+		else if(path.equals("/day01/detail.do")) conn = new DetailController();
+		else if(path.equals("/day01/add.do")) conn = new AddController();
+		else if(path.equals("/day01/insert.do")) conn = new InsertController();
+		
+		if(conn != null) url = conn.execute(req);
+		else url = "/index.jsp";
 		
 		req.getRequestDispatcher(url).forward(req, resp);
 		
