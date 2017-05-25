@@ -15,21 +15,27 @@ import org.junit.Test;
 public class SampleDAOTest {
 
 	static Logger logger = Logger.getLogger(SampleDAOTest.class);
+	static SampleDAO dao;
+	
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+//		dao = new SampleDAO(false);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+//		dao.back();
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		dao = new SampleDAO(false);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		dao.back();
 	}
 
 	@Test
@@ -39,7 +45,6 @@ public class SampleDAOTest {
 
 	@Test
 	public void testSelectAll() throws ClassNotFoundException, SQLException {
-		SampleDAO dao = new SampleDAO();
 		List<Map<String, Object>> list = dao.selectAll();
 		
 		Assert.assertNotNull(list);
@@ -50,5 +55,27 @@ public class SampleDAOTest {
 			logger.debug(map.get("sabun"));
 		}
 	}
+	
+	@Test
+	public void testSelectOne() throws ClassNotFoundException, SQLException {
+		int sabun = 1111;
+		Map<String, Object> map = dao.selectOne(sabun);
+		
+		Assert.assertNotNull(map);
+		Assert.assertEquals(sabun, map.get("sabun"));
+		Assert.assertEquals("user01", map.get("name"));
+		Assert.assertEquals(1000, map.get("pay"));
+		
+	}
 
+	@Test
+	public void testInsertOne() throws ClassNotFoundException, SQLException {
+		int sabun=4444, pay=4444;
+		String name = "user04";
+		
+		int result = dao.insertOne(sabun, name, pay);
+		Assert.assertSame(1, result);
+		
+	}
+	
 }
