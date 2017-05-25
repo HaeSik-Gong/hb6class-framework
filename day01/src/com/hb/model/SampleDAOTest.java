@@ -44,7 +44,7 @@ public class SampleDAOTest {
 		
 		Assert.assertNotNull(list);
 		Assert.assertTrue(list.size()>0);
-		Assert.assertSame(1, list.size());
+		Assert.assertSame(3, list.size());
 		
 		for(Map<String, Object> map : list) {
 			logger.debug(map.get("sabun"));

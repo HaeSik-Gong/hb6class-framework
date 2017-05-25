@@ -19,7 +19,7 @@ public class SampleDAO {
 	public SampleDAO() throws ClassNotFoundException, SQLException {
 		Connection myconn = null;
 		Class.forName("org.h2.Driver");
-        myconn = DriverManager.getConnection("jdbc:h2:~/test", "sa", "");
+        myconn = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "");
         
 		conn = myconn;
 	}
