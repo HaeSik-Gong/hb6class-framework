@@ -1,0 +1,14 @@
+#table {
+	width: 80%;
+	border: 1px solid red;
+	margin: 0px auto;
+}
+
+div.tr {
+	border: 1px solid blue;
+}
+
+div.tr span {
+	display: inline-block;
+	width: 24%;
+}
