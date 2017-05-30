@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,24 +7,27 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<h1>리스트 페이지</h1>
+		<h1>상세 페이지</h1>
 		
 		<table>
 			<tr>
 				<th>사 번</th>
-				<th>이 름</th>
-				<th>날 짜</th>
-				<th>금 액</th>
-			</tr>
-			<c:forEach items="${list }" var="bean">
-			<tr>
 				<td>${bean.sabun }</td>
-				<td><a href="detail.action?sabun=${bean.sabun }">${bean.name }</a></td>
+			</tr>
+			<tr>
+				<th>이 름</th>
+				<td>${bean.name }</td>
+			</tr>
+			<tr>
+				<th>날 짜</th>
 				<td>${bean.nalja }</td>
+			</tr>
+			<tr>
+				<th>금 액</th>
 				<td>${bean.pay }</td>
 			</tr>
-			</c:forEach>
 		</table>
-		<a href="add.action">입력</a>
+		<a href="edit.action?sabun=${bean.sabun }">수정</a>
+		<a href="delete.action?sabun=${bean.sabun }">삭제</a>
 	</body>
 </html>
