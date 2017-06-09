@@ -1,6 +1,7 @@
 package com.hb.day02.user.model;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
 import java.sql.SQLException;
@@ -42,7 +43,7 @@ public class GuestUserDaoImpTest {
 	public void testSelectAll() throws SQLException {
 		List<GuestUserVo> list = dao.selectAll();
 		assertNotNull("list==null", list);
-		assertSame(0, list.size());
+		assertNotSame(0, list.size());
 	}
 
 }
